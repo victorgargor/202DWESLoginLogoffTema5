@@ -1,4 +1,9 @@
 <?php
+if (isset($_REQUEST['enviar'])) {
+    // Redirige a la página de login
+    header("Location:programa.php");
+    exit();
+}
 // Importamos la configuración de la base de datos
 require_once '../config/ConfDBPDO.php';
 // Incluimos la libreria de validacion de formularios
@@ -85,7 +90,7 @@ if (isset($_REQUEST['enviar'])) {
     </head>
     <body>
         <header>
-            <h1>Desarrollo de un control de acceso con identificación del usuario basado en la función header() y en el uso de una tabla “Usuario” de la base de datos. (PDO)</h1>
+            <h1>LOGIN</h1>
         </header>
         <main>
             <?php if ($mensajeExito) { ?>
@@ -112,7 +117,8 @@ if (isset($_REQUEST['enviar'])) {
         </main>
         <footer>
             <div>
-                <a href="../indexProyectoTema5.php">Tema 5</a> 
+                <a href="/index.html">Víctor García Gordón</a>
+                <a href="../indexProyectoLoginLogoffTema5.php">Home</a> 
                 <a target="blank" href="../doc/curriculum.pdf"><img src="../doc/curriculum.jpg" alt="curriculum"></a>
                 <a target="blank" href="https://github.com/victorgargor/202DWESProyectoTema5"><img src="../doc/github.png" alt="github"></a>
                 <a target="blank" href="https://github.com">Web Imitada</a>
@@ -120,4 +126,3 @@ if (isset($_REQUEST['enviar'])) {
         </footer>
     </body>
 </html>
-y 

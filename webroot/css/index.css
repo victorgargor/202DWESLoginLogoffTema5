@@ -9,12 +9,16 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    justify-content: center; /* Centra los elementos verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    text-align: center;
 }
 
 header {
     background-color: #24292f;
     padding: 20px;
-    text-align: center;
+    text-align: center; /* Centra el texto */
+    width: 100%; /* Asegura que el header ocupe todo el ancho */
 }
 
 header h1 {
@@ -27,13 +31,7 @@ header h1 {
 main {
     padding: 20px;
     flex: 1;
-    overflow: hidden; /* Oculta cualquier scroll del main */
-}
-
-/* Habilita scroll en la tabla */
-nav {
-    max-height: 70vh; /* Limita la altura del contenedor */
-    overflow-y: auto; /* Habilita el scroll vertical */
+    overflow: hidden;
 }
 
 /* Tabla */
@@ -58,6 +56,31 @@ th {
 
 tr:nth-child(even) {
     background-color: #f6f8fa;
+}
+
+input {
+    background-color: #f6f8fa; 
+    color: #24292f; 
+    font-size: 14px; 
+    padding: 6px 16px; 
+    border: 1px solid transparent; 
+    border-radius: 3px;
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s; 
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+input:hover {
+    background-color: lightblue; 
+    transform: translateY(-2px); 
+}
+
+input:active {
+    background-color: #1e7e34; 
+    transform: translateY(0);
 }
 
 /* Enlaces */
@@ -115,3 +138,4 @@ footer img {
         font-size: 14px;
     }
 }
+
