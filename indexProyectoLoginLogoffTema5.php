@@ -4,11 +4,20 @@
  * @version Fecha de última modificación 21/11/2024
  */
 
+// Redirige a la página de login si se pulsa el botón
 if (isset($_REQUEST['login'])) {
-    // Redirige a la página de login
     header("Location:codigoPHP/login.php");
     exit();
 }
+
+// Cargar el contenido del archivo README.md
+$readmeFile = "README.md";
+$readmeContent = file_exists($readmeFile) ? file_get_contents($readmeFile) : "Archivo README.md no encontrado.";
+
+// Incluir Parsedown para convertir Markdown a HTML
+require_once "core/Parsedown.php";
+$Parsedown = new Parsedown();
+$readmeHTML = $Parsedown->text($readmeContent);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,6 +35,11 @@ if (isset($_REQUEST['login'])) {
             <form>
                 <input type="submit" name="login" value="LOGIN">
             </form>
+            <section>
+                <div id="readme-content">
+                    <?= $readmeHTML; ?>
+                </div>
+            </section>
         </main>
         <footer>
             <div>
@@ -38,3 +52,4 @@ if (isset($_REQUEST['login'])) {
         </footer>
     </body>
 </html>
+

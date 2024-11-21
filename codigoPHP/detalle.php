@@ -78,7 +78,7 @@
                     echo '<h2 style="color:lightcoral;">La variable $_REQUEST está vacía </h2>';
                 }
 
-                // Mostrar la configuración de PHP
+                // Mostrar la configuración de PHP            
                 phpinfo();
                 ?>
             </section>

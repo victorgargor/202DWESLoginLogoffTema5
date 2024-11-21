@@ -15,7 +15,7 @@ if (isset($_REQUEST['detalle'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../webroot/css/index.css" type="text/css">
+        <link rel="stylesheet" href="../webroot/css/programa.css" type="text/css">
         <title>Víctor García Gordón</title>
     </head>
     <body>
