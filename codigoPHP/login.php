@@ -128,7 +128,7 @@ if (isset($_REQUEST['sesion'])) {
             <div>
                 <a href="/index.html">Víctor García Gordón</a>
                 <a target="blank" href="../doc/curriculum.pdf"><img src="../doc/curriculum.jpg" alt="curriculum"></a>
-                <a target="blank" href="https://github.com/victorgargor/202DWESProyectoTema5"><img src="../doc/github.png" alt="github"></a>
+                <a target="blank" href="https://github.com/victorgargor/202DWESLoginLogoffTema5"><img src="../doc/github.png" alt="github"></a>
                 <a target="blank" href="https://github.com">Web Imitada</a>
             </div>
         </footer>
