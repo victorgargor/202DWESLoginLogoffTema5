@@ -99,9 +99,9 @@ if (isset($_REQUEST['sesion'])) {
             <h1>LOGIN</h1>
         </header>
         <main>
-            <?php if ($mensajeExito) { ?>
+            <?php /*if ($mensajeExito) { ?>
                 <p style="color:green;"><?php echo $mensajeExito; ?></p>
-            <?php } ?>
+            <?php }*/ ?>
 
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" novalidate>
                 <div class="form-group">

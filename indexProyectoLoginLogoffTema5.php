@@ -18,7 +18,8 @@ $readmeContent = file_exists($readmeFile) ? file_get_contents($readmeFile) : "Ar
 require_once "core/Parsedown.php";
 $Parsedown = new Parsedown();
 $readmeHTML = $Parsedown->text($readmeContent);
-?>
+?> new Parsedown();
+$readmeHTML = $Pars
 <!DOCTYPE html>
 <html lang="es">
     <head>
