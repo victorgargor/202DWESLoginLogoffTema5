@@ -121,6 +121,16 @@ main {
     color: #d73a49;
 }
 
+#readme-content img {
+    display: block;
+    width: 700px;
+    height: 700px;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 700px;
+}
+
 /* Tabla */
 table {
     width: 100%;
@@ -240,6 +250,10 @@ footer img {
 
     footer {
         padding: 10px;
+    }
+    
+    #readme-content img {
+        max-height: 300px; /* Reduce la altura máxima en pantallas pequeñas */
     }
 }
 

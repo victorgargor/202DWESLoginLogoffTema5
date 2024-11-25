@@ -14,6 +14,8 @@ Este proyecto forma parte del aprendizaje de la asignatura **Desarrollo Web en E
 
 Incluye además el manejo de **cookies**, **sesiones** y una implementación básica de **seguridad y navegación estructurada**.
 
+![Imagen](doc/aplicacion.png)
+
 ---
 
 ## Funcionalidades

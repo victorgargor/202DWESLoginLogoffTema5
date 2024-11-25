@@ -1,0 +1,2 @@
+DROP USER  user202DWESLoginLogoffTema5;
+DROP DATABASE DB202DWESLoginLogoffTema5;

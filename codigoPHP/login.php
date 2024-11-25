@@ -1,134 +1,82 @@
 <?php
+/**
+ * @author Víctor García Gordón
+ * @version Fecha de última modificación 25/11/2024
+ */
 if (isset($_REQUEST['volver'])) {
-    // Redirige al index
-    header("Location:../indexProyectoLoginLogoffTema5.php");
-    exit();
+    header('location:../indexProyectoLoginLogoffTema5.php'); // Redirige a la página principal
+    exit;
 }
-if (isset($_REQUEST['sesion'])) {
-    // Redirige al programa
-    header("Location:programa.php");
-    exit();
+
+// Si se ha enviado la solicitud 'iniciarsesion', intenta autenticar al usuario.
+if (isset($_REQUEST['iniciarsesion'])) {
+    // Incluye el archivo de configuración de la base de datos.
+    require_once('../config/ConfDBPDO.php');
+    try {
+        // Conexión a la BD.
+        $miDB = new PDO(DSN, USER, PASSWORD);
+
+        // Prepara la consulta para obtener la contraseña del usuario usando un parámetro
+        $sql = $miDB->prepare("SELECT T01_Password FROM T01_Usuario WHERE T01_CodUsuario = ?");
+        $sql->execute([$_REQUEST['usuario']]); // Vincula el parámetro y ejecuta la consulta
+        // Obtiene el resultado de la consulta como un objeto.
+        $usuario = $sql->fetchObject();
+
+        // Verifica si la contraseña de la base de datos coincide con la contraseña proporcionada por el usuario.
+        if (isset($usuario->T01_Password) && hash('sha256', $_REQUEST['usuario'] . $_REQUEST['password']) == $usuario->T01_Password) {
+            // Si la autenticación es correcta, actualiza el número de conexiones y la fecha de la última conexión.
+            $sql2 = $miDB->prepare("UPDATE T01_Usuario SET T01_NumConexiones = T01_NumConexiones + 1, T01_FechaHoraUltimaConexion = now() WHERE T01_CodUsuario = ?");
+            $sql2->execute([$_REQUEST['usuario']]); // Ejecuta la actualización
+            // Redirige al usuario a la página 'programa.php' después de un inicio de sesión exitoso.
+            header('location:programa.php');
+        } else {
+            // Si la autenticación falla, redirige al usuario de nuevo a la página de login.
+            header('location:login.php');
+        }
+    } catch (PDOException $exception) {
+        // Si ocurre un error al intentar conectar a la base de datos, muestra el mensaje de error.
+        echo($exception->getMessage());
+    } finally {
+        unset($miDB); // Cerramos la conexión a la BD.
+    }
+    exit;
 }
-/*
-  // Importamos la configuración de la base de datos
-  require_once '../config/ConfDBPDO.php';
-  // Incluimos la libreria de validacion de formularios
-  require_once('../core/231018libreriaValidacion.php');
-  try {
-  // Establecer la conexión PDO
-  $miDB = new PDO(DSN, USER, PASSWORD);
-  } catch (PDOException $excepcion) {
-  echo "<p class='mensaje-error'>Error: " . $excepcion->getMessage() . "</p>";
-  echo "<p class='mensaje-error'>Código de error: " . $excepcion->getCode() . "</p><br/>";
-  }
-
-  // Inicialización de variables
-  $entradaOK = true;
-  $aErrores = ['usuario' => '', 'password' => ''];
-  $aRespuestas = ['usuario' => '', 'password' => ''];
-  $mensajeExito = '';
-  // Definición de constantes que utilizaremos en los métodos de la librería
-  define('OBLIGATORIO', 1);
-  define('OPCIONAL', 0);
-  // Definición de constantes para validarPassword
-  define('MAX_PASS', 16);
-  define('MIN_PASS', 2);
-  define('DEBIL', 1); // La contraseña admite solo letras
-  define('NORMAL', 2); // La contraseña admite numeros y letras
-  define('FUERTE', 3); // La contraseña admite si contiene al menos una letra mayúscula y un número
-
-  if (isset($_REQUEST['enviar'])) {
-  // Recibir y limpiar los datos del formulario
-  $usuario = $_REQUEST['usuario'];
-  $password = $_REQUEST['password'];
-
-  $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], 1000, 1, OBLIGATORIO);
-  $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], MAX_PASS, MIN_PASS, DEBIL, OBLIGATORIO);
-
-  // Recorremos el array de errores
-  foreach ($aErrores as $clave => $valor) {
-  if ($valor != null) {
-  $entradaOK = false;
-  //Limpiamos el campo si hay un error
-  $_REQUEST[$clave] = '';
-  }
-  }
-
-  // Si no hay errores, comprobar las credenciales
-  if ($entradaOK) {
-  // Preparar la consulta para verificar las credenciales
-  $resultadoConsulta = $miDB->prepare("SELECT T01_CodUsuario, T01_Password FROM T01_Usuario WHERE T01_CodUsuario = :usuario LIMIT 1");
-  // Ejecutar la consulta pasando el valor del usuario como parámetro
-  $resultadoConsulta->execute(['usuario' => $usuario]);
-  // Obtener el resultado de la consulta
-  $usuarioDB = $resultadoConsulta->fetch(PDO::FETCH_ASSOC);
-
-  // Verificar si el usuario existe
-  if ($usuarioDB) {
-  // Concatenar el nombre de usuario con la contraseña proporcionada
-  $usuarioContrasenaConcatenados = $usuario.$password;
-  // Cifrar la concatenación usando SHA-256
-  $usuarioContrasenaCifrada = hash('sha256', $usuarioContrasenaConcatenados);
-  // Verificar si la concatenación cifrada coincide con la almacenada en la base de datos
-  if (hash_equals($usuarioDB['T01_Password'], $usuarioContrasenaCifrada)) {
-  // Si la contraseña es correcta, mostrar mensaje de éxito
-  $mensajeExito = '¡Has iniciado sesión correctamente!';
-  } else {
-  // Si la contraseña es incorrecta, registrar un error y marcar que la entrada no es válida
-  $aErrores['password'] = 'Usuario o contraseña incorrectos.';
-  $entradaOK = false; // Establecer que la entrada no es válida
-  }
-  } else {
-  // Si el usuario no existe en la base de datos, registrar un error
-  $aErrores['usuario'] = 'Usuario no encontrado.';
-  $entradaOK = false; // Marcar que la entrada no es válida
-  }
-  }
-  } */
 ?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../webroot/css/login.css" type="text/css">
-        <title>Víctor García Gordón</title>
+        <link rel="stylesheet" href="../webroot/css/login.css" type="text/css"> 
+        <title>Login</title> 
     </head>
     <body>
         <header>
             <h1>LOGIN</h1>
         </header>
         <main>
-            <?php /*if ($mensajeExito) { ?>
-                <p style="color:green;"><?php echo $mensajeExito; ?></p>
-            <?php }*/ ?>
-
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" novalidate>
                 <div class="form-group">
                     <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" required 
-                           value="<?php echo (isset($_REQUEST['usuario']) ? $_REQUEST['usuario'] : ''); ?>" 
-                           style="background-color: lightyellow">                        
+                    <input type="text" id="usuario" name="usuario" style="background-color: lightyellow" required> 
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" required 
-                           value="<?php echo (isset($_REQUEST['password']) ? $_REQUEST['password'] : ''); ?>" 
-                           style="background-color: lightyellow">                      
+                    <input type="password" id="password" name="password" style="background-color: lightyellow" required> 
                 </div>
                 <div class="form-group">
-                    <input type="submit" id="sesion" name="sesion" value="Iniciar Sesión">
+                    <input type="submit" name="iniciarsesion" value="Iniciar Sesión"> 
                 </div>
-            </form>
+            </form>      
             <form>
-                <input type="submit" name="volver" value="Volver">
+                <input type="submit" name="volver" value="Volver"> 
             </form>
         </main>
         <footer>
             <div>
-                <a href="/index.html">Víctor García Gordón</a>
-                <a target="blank" href="../doc/curriculum.pdf"><img src="../doc/curriculum.jpg" alt="curriculum"></a>
-                <a target="blank" href="https://github.com/victorgargor/202DWESLoginLogoffTema5"><img src="../doc/github.png" alt="github"></a>
+                <a href="/index.html">Víctor García Gordón</a> 
+                <a target="blank" href="../doc/curriculum.pdf"><img src="../doc/curriculum.jpg" alt="curriculum"></a> 
+                <a target="blank" href="https://github.com/victorgargor/202DWESLoginLogoffTema5"><img src="../doc/github.png" alt="github"></a> 
                 <a target="blank" href="https://github.com">Web Imitada</a>
             </div>
         </footer>

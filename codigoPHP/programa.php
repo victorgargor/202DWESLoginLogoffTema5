@@ -5,8 +5,13 @@
  */
 
 if (isset($_REQUEST['detalle'])) {
-    // Redirige a la página de login
+    // Redirige a la página de detalle
     header("Location:detalle.php");
+    exit();
+}
+if (isset($_REQUEST['cerrarsesion'])) {
+    // Redirige a la página de login
+    header("Location:../indexProyectoLoginLogoffTema5.php");
     exit();
 }
 ?>
@@ -24,13 +29,15 @@ if (isset($_REQUEST['detalle'])) {
         </header>
         <main>
             <form>
-                <input type="submit" name="detalle" value="DETALLE">
+                <input type="submit" name="detalle" value="Detalle">
+            </form>
+            <form>
+                <input type="submit" name="cerrarsesion" value="Cerrar Sesión">
             </form>
         </main>
         <footer>
             <div>
                 <a href="/index.html">Víctor García Gordón</a>
-                <a href="../indexProyectoLoginLogoffTema5.php">Home</a> 
                 <a target="blank" href="../doc/curriculum.pdf"><img src="../doc/curriculum.jpg" alt="curriculum"></a>
                 <a target="blank" href="https://github.com/victorgargor/202DWESLoginLogoffTema5"><img src="../doc/github.png" alt="github"></a>
                 <a target="blank" href="https://github.com">Web Imitada</a>

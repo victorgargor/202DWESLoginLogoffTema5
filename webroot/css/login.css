@@ -76,7 +76,7 @@ form:first-of-type .form-group input:focus {
 }
 
 /* Botón Iniciar sesión */
-input[name="sesion"] {
+input[name="iniciarsesion"] {
     background-color: #ffffff;
     color: #24292f;
     font-size: 14px;
@@ -89,7 +89,7 @@ input[name="sesion"] {
 }
 
 /* Efecto hover para Iniciar sesión */
-input[name="sesion"]:hover {
+input[name="iniciarsesion"]:hover {
     background-color: #0366d6;
     color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -97,7 +97,7 @@ input[name="sesion"]:hover {
 }
 
 /* Efecto activo (clic) para Iniciar sesión */
-input[name="sesion"]:active {
+input[name="iniciarsesion"]:active {
     background-color: #005bb5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transform: translateY(0);

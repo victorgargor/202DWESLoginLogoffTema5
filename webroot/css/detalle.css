@@ -1,0 +1,149 @@
+/* Estilos Generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f8fa; /* Fondo fijo */
+    color: #24292f;
+    height: 100%; /* Aseguramos que el body ocupe toda la altura */
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    justify-content: flex-start; /* Ajustado para mantener el contenido en la parte superior */
+}
+
+/* Header */
+header {
+    background-color: #24292f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #ffffff;
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Contenedor principal */
+main {
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos estén en columna */
+    justify-content: flex-start; /* Mantiene el contenido en la parte superior */
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 120px; /* Ajusta la distancia del encabezado */
+    height: calc(100vh - 160px); /* Ajusta la altura para no solaparse con el header y el footer */
+}
+
+/* Tabla de las superglobales */
+table {
+    width: 80%; /* Ajusta el ancho de la tabla al 80% */
+    margin: 20px auto; /* Centra la tabla horizontalmente */
+    border-collapse: collapse;
+    background-color: white; /* Fondo blanco para la tabla */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #e1e4e8;
+}
+
+td strong {
+    color: #0366d6; /* Para resaltar las claves */
+}
+
+/* Título de la superglobal centrado */
+h2 {
+    color: #24292f;
+    font-size: 20px;
+    margin: 20px 0;
+    text-align: center; /* Centra el título de la superglobal */
+}
+
+/* Mensajes de error */
+h2.error {
+    color: lightcoral;
+}
+
+input[name="aceptar"] {
+    background-color: #ffffff;
+    color: #24292f;
+    font-size: 14px;
+    padding: 8px 20px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: fixed;
+    top: 17.5px;
+    right: 20px;
+    z-index: 1001;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[name="aceptar"]:hover {
+    background-color: #0366d6;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+input[name="aceptar"]:active {
+    background-color: #005bb5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+/* Footer */
+footer {
+    background-color: #24292f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: lightblue;
+}
+
+footer img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+
+    main {
+        padding: 80px 10px;
+        padding-bottom: 100px;
+    }
+
+    footer {
+        padding: 10px;
+    }
+}

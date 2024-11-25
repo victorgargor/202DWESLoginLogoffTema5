@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Víctor García Gordón
- * @version Fecha de última modificación 21/11/2024
+ * @version Fecha de última modificación 25/11/2024
  */
 
 // Redirige a la página de login si se pulsa el botón
@@ -34,7 +34,7 @@ $readmeHTML = $Pars
         </header>
         <main>
             <form>
-                <input type="submit" name="login" value="LOGIN">
+                <input type="submit" name="login" value="Login">
             </form>
             <section>
                 <div id="readme-content">
