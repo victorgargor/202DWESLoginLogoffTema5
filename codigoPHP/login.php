@@ -1,84 +1,154 @@
 <?php
 /**
  * @author Víctor García Gordón
- * @version Fecha de última modificación 25/11/2024
+ * @version Fecha de última modificación 26/11/2024
  */
-if (isset($_REQUEST['volver'])) {
-    header('location:../indexProyectoLoginLogoffTema5.php'); // Redirige a la página principal
+// Iniciamos la sesión o reanudamos la existente mediante esta función
+session_start();
+
+//Si el usuario ya se ha autenticado previamente y no ha cerrado el navegador, se entrara a la aplicacion directamente
+if (isset($_SESSION["usuarioDAW202LoginLogoffTema5"])) {
+    header('location:programa.php');
     exit;
 }
 
-// Si se ha enviado la solicitud 'iniciarsesion', intenta autenticar al usuario.
-if (isset($_REQUEST['iniciarsesion'])) {
-    // Incluye el archivo de configuración de la base de datos.
-    require_once('../config/ConfDBPDO.php');
+// Comprobar si se ha presionado el botón de cancelar, redirigir al login
+if (!empty($_REQUEST['volver'])) {
+    header('Location:../indexProyectoLoginLogoffTema5.php');
+    exit();
+}
+
+// Incluir archivos necesarios para la validación y la conexión a la base de datos
+require_once('../core/231018libreriaValidacion.php');
+require_once('../config/ConfDBPDO.php');
+
+// Variable que indica si las respuestas son correctas
+$entradaOK = true;
+
+// Array para almacenar los errores de validación
+$aErrores = [
+    'usuario' => '',
+    'password' => ''
+];
+
+// Verificar si el formulario ha sido enviado
+if (isset($_REQUEST['enviar'])) {
+
+    // Validar los campos de usuario y contraseña
+    $aErrores['usuario'] = validacionFormularios::comprobarAlfaNumerico($_REQUEST['usuario'], 256, 4, 0);
+    $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], 256, 4, 1, 0);
+
     try {
-        // Conexión a la BD.
+        // Conectar a la base de datos utilizando PDO
         $miDB = new PDO(DSN, USER, PASSWORD);
 
-        // Prepara la consulta para obtener la contraseña del usuario usando un parámetro
-        $sql = $miDB->prepare("SELECT T01_Password FROM T01_Usuario WHERE T01_CodUsuario = ?");
-        $sql->execute([$_REQUEST['usuario']]); // Vincula el parámetro y ejecuta la consulta
-        // Obtiene el resultado de la consulta como un objeto.
-        $usuario = $sql->fetchObject();
+        // Variable que contiene el hash del usuario + password
+        $hashedPassword = hash("sha256", $_REQUEST['usuario'] . $_REQUEST['password']);
 
-        // Verifica si la contraseña de la base de datos coincide con la contraseña proporcionada por el usuario.
-        if (isset($usuario->T01_Password) && hash('sha256', $_REQUEST['usuario'] . $_REQUEST['password']) == $usuario->T01_Password) {
-            // Si la autenticación es correcta, actualiza el número de conexiones y la fecha de la última conexión.
-            $sql2 = $miDB->prepare("UPDATE T01_Usuario SET T01_NumConexiones = T01_NumConexiones + 1, T01_FechaHoraUltimaConexion = now() WHERE T01_CodUsuario = ?");
-            $sql2->execute([$_REQUEST['usuario']]); // Ejecuta la actualización
-            // Redirige al usuario a la página 'programa.php' después de un inicio de sesión exitoso.
-            header('location:programa.php');
-        } else {
-            // Si la autenticación falla, redirige al usuario de nuevo a la página de login.
-            header('location:login.php');
+        // Preparar la consulta para verificar las credenciales del usuario
+        $sql = $miDB->prepare('SELECT * FROM T01_Usuario WHERE T01_CodUsuario = :usuario AND T01_Password = :password');
+        $sql->bindParam(':usuario', $_REQUEST['usuario']);
+        $sql->bindParam(':password', $hashedPassword);
+        $sql->execute();
+
+        // Obtener el resultado de la consulta
+        $oUsuarioActivo = $sql->fetchObject();
+
+        // Si no se encuentra al usuario, mostrar error
+        if (!$oUsuarioActivo) {
+            $aErrores['usuario'] = "Error de autenticación";
+            $entradaOK = false;
+        }
+
+        // Verificar si hay errores en los campos de entrada
+        foreach ($aErrores as $campo => $valor) {
+            if ($valor != null) {
+                $entradaOK = false;
+                $_REQUEST[$campo] = '';  // Limpiar campos con errores
+            }
         }
     } catch (PDOException $exception) {
-        // Si ocurre un error al intentar conectar a la base de datos, muestra el mensaje de error.
-        echo($exception->getMessage());
-    } finally {
-        unset($miDB); // Cerramos la conexión a la BD.
+        // Capturar cualquier error de la base de datos y mostrarlo
+        echo "<p>Error: " . $exception->getMessage() . "</p>";
+        echo "<p>Código de error: " . $exception->getCode() . "</p><br/>";
     }
-    exit;
+} else {
+    $entradaOK = false;
 }
-?>
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../webroot/css/login.css" type="text/css"> 
-        <title>Login</title> 
-    </head>
-    <body>
-        <header>
-            <h1>LOGIN</h1>
-        </header>
-        <main>
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" novalidate>
-                <div class="form-group">
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" style="background-color: lightyellow" required> 
+
+// Si los datos son correctos, actualizar la información del usuario
+if ($entradaOK) {
+    try {
+        // Incrementar el número de conexiones y actualizar la fecha de última conexión
+        $numConexionActual = $oUsuarioActivo->T01_NumConexiones + 1;
+        $fechaHoraUltimaConexionAnterior = $oUsuarioActivo->T01_FechaHoraUltimaConexion;
+
+        // Guardar la información del usuario en la sesión
+        $_SESSION['usuarioDAW202AppLoginLogoffTema5'] = $oUsuarioActivo->T01_CodUsuario;
+        $_SESSION['numConexiones'] = $numConexionActual;
+        $_SESSION['ultimaConexion'] = $fechaHoraUltimaConexionAnterior;
+
+        // Actualizar los datos del usuario en la base de datos
+        $sql2 = 'UPDATE T01_Usuario SET T01_NumConexiones = :numConexiones, T01_FechaHoraUltimaConexion = NOW() WHERE T01_CodUsuario = :usuario';
+        $consultaActualizacion = $miDB->prepare($sql2);
+        $consultaActualizacion->bindParam(':numConexiones', $numConexionActual);
+        $consultaActualizacion->bindParam(':usuario', $_REQUEST['usuario']);
+        $consultaActualizacion->execute();
+
+        // Redirigir al programa principal
+        header("Location: programa.php");
+        exit();
+    } catch (PDOException $exception) {
+        // Si ocurre un error en la conexión con la base de datos, mostrarlo
+        echo "<p>Error: " . $exception->getMessage() . "</p>";
+        echo "<p>Código de error: " . $exception->getCode() . "</p><br/>";
+    } finally {
+        // Cerrar la conexión a la base de datos
+        unset($miDB);
+    }
+} else {
+    // Si los datos no son correctos, mostrar el formulario de login
+    ?>
+    <!DOCTYPE html>
+    <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="../webroot/css/login.css" type="text/css">
+            <title>Login</title>
+        </head>
+        <body>
+            <header>
+                <h1>LOGIN</h1>
+            </header>
+            <main>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" novalidate>
+                    <div class="form-group">
+                        <label for="usuario">Usuario:</label>
+                        <input type="text" id="usuario" name="usuario" style="background-color: lightyellow" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" style="background-color: lightyellow" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="enviar" value="Iniciar Sesión">
+                    </div>
+                </form>
+                <form>
+                    <input type="submit" name="volver" value="Volver">
+                </form>
+            </main>
+            <footer>
+                <div>
+                    <a href="/index.html">Víctor García Gordón</a>
+                    <a target="blank" href="../doc/curriculum.pdf"><img src="../doc/curriculum.jpg" alt="curriculum"></a>
+                    <a target="blank" href="https://github.com/victorgargor/202DWESLoginLogoffTema5"><img src="../doc/github.png" alt="github"></a>
+                    <a target="blank" href="https://github.com">Web Imitada</a>
                 </div>
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" style="background-color: lightyellow" required> 
-                </div>
-                <div class="form-group">
-                    <input type="submit" name="iniciarsesion" value="Iniciar Sesión"> 
-                </div>
-            </form>      
-            <form>
-                <input type="submit" name="volver" value="Volver"> 
-            </form>
-        </main>
-        <footer>
-            <div>
-                <a href="/index.html">Víctor García Gordón</a> 
-                <a target="blank" href="../doc/curriculum.pdf"><img src="../doc/curriculum.jpg" alt="curriculum"></a> 
-                <a target="blank" href="https://github.com/victorgargor/202DWESLoginLogoffTema5"><img src="../doc/github.png" alt="github"></a> 
-                <a target="blank" href="https://github.com">Web Imitada</a>
-            </div>
-        </footer>
-    </body>
-</html>
+            </footer>
+        </body>
+    </html>
+    <?php
+}
+

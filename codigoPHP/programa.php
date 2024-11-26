@@ -3,6 +3,13 @@
  * @author Víctor García Gordón
  * @version Fecha de última modificación 21/11/2024
  */
+// Iniciamos la sesión o reanudamos la existente mediante esta función
+session_start();
+
+if (empty($_SESSION['usuarioDAW202AppLoginLogoffTema5']) || empty($_SESSION['numConexiones']) || empty($_SESSION['ultimaConexion'])) {
+    header("Location:login.php");
+    exit();
+}
 
 if (isset($_REQUEST['detalle'])) {
     // Redirige a la página de detalle
@@ -11,6 +18,8 @@ if (isset($_REQUEST['detalle'])) {
 }
 if (isset($_REQUEST['cerrarsesion'])) {
     // Redirige a la página de login
+    session_unset();
+    session_destroy();
     header("Location:../indexProyectoLoginLogoffTema5.php");
     exit();
 }

@@ -3,6 +3,13 @@
  * @author Víctor García Gordón
  * @version Fecha de última modificación 25/11/2024
  */
+// Iniciamos la sesión o reanudamos la existente mediante esta función
+session_start();
+
+if (empty($_SESSION['usuarioDAW202AppLoginLogoffTema5']) || empty($_SESSION['numConexiones']) || empty($_SESSION['ultimaConexion'])) {
+    header("Location:login.php");
+    exit();
+}
 
 // Redirige a la página del programa si se pulsa el botón
 if (isset($_REQUEST['aceptar'])) {
@@ -40,6 +47,18 @@ if (isset($_REQUEST['aceptar'])) {
             }
 
             // Comprobar que están llenas y mostrar las variables superglobales 
+            if (!empty($_SESSION)) {
+                mostrarSuperglobal('SESSION', $_SESSION);
+            } else {
+                echo '<h2 style="color:lightcoral;">La variable $_SESSION está vacía </h2>';
+            }
+            
+             if (!empty($_COOKIE)) {
+                mostrarSuperglobal('COOKIE', $_COOKIE);
+            } else {
+                echo '<h2 style="color:lightcoral;">La variable $_COOKIE está vacía </h2>';
+            }
+            
             if (!empty($_SERVER)) {
                 mostrarSuperglobal('SERVER', $_SERVER);
             } else {
@@ -62,20 +81,8 @@ if (isset($_REQUEST['aceptar'])) {
                 mostrarSuperglobal('FILES', $_FILES);
             } else {
                 echo '<h2 style="color:lightcoral;">La variable $_FILES está vacía </h2>';
-            }
-
-            if (!empty($_COOKIE)) {
-                mostrarSuperglobal('COOKIE', $_COOKIE);
-            } else {
-                echo '<h2 style="color:lightcoral;">La variable $_COOKIE está vacía </h2>';
-            }
-
-            if (!empty($_SESSION)) {
-                mostrarSuperglobal('SESSION', $_SESSION);
-            } else {
-                echo '<h2 style="color:lightcoral;">La variable $_SESSION está vacía </h2>';
-            }
-
+            }         
+        
             if (!empty($_ENV)) {
                 mostrarSuperglobal('ENV', $_ENV);
             } else {
