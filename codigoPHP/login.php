@@ -54,12 +54,6 @@ if (isset($_REQUEST['iniciarsesion'])) {
         // Obtener el resultado de la consulta
         $oUsuarioActivo = $sql->fetchObject();
 
-        // Si no se encuentra al usuario, mostrar error
-        if (!$oUsuarioActivo) {
-            $aErrores['usuario'] = "Error de autenticación";
-            $entradaOK = false;
-        }
-
         // Verificar si hay errores en los campos de entrada
         foreach ($aErrores as $campo => $valor) {
             if ($valor != null) {

@@ -12,9 +12,8 @@ body {
 }
 
 .aplicacion {
-    width: 650px;
-    height: 650px;
-    
+    width: 700px;
+    height: 700px;
 }
 
 /* Header */
@@ -60,7 +59,7 @@ main {
     padding: 8px 20px;
     position: fixed;
     top: 17.5px;
-    left: 1525px;
+    left: 1500px;
     z-index: 1001;
 }
 
