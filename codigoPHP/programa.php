@@ -13,7 +13,7 @@ $oUsuarioActivo = $_SESSION['usuarioDAW202AppLoginLogoffTema5'];
 
 // Mostrar información del usuario
 $nombreUsuario = $oUsuarioActivo->T01_DescUsuario;
-$numConexiones = $oUsuarioActivo->T01_NumConexiones;
+$numConexiones = $oUsuarioActivo->T01_NumConexiones+1;
 $fechaUltimaConexion = $oUsuarioActivo->T01_FechaHoraUltimaConexion;
 
 // Formatear la fecha de la última conexión
@@ -21,7 +21,7 @@ $fechaUltimaConexionFormateada = date("d/m/Y H:i:s", strtotime($fechaUltimaConex
 
 // Mostramos el mensaje de bienvenida dependiendo de si es la primera vez o no
 if ($numConexiones == 1) {
-    echo "<p>¡Bienvenido <b> ". $nombreUsuario." </b>! Esta es la primera vez que te conectas.</p>";
+    echo "<p>¡Bienvenido <b> &nbsp". $nombreUsuario." </b>! Esta es la primera vez que te conectas.</p>";
 } else {
     echo "<p>¡Bienvenido de nuevo <b>&nbsp;". $nombreUsuario ."</b>! Esta es la <b>&nbsp;". $numConexiones. "&nbsp;</b> vez que te conectas y te conectaste por última vez el <b>&nbsp;" .$fechaUltimaConexionFormateada. "&nbsp;</b></p>";
 }
