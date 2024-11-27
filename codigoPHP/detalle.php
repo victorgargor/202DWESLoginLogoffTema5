@@ -6,7 +6,7 @@
 // Iniciamos la sesión o reanudamos la existente mediante esta función
 session_start();
 
-if (empty($_SESSION['usuarioDAW202AppLoginLogoffTema5']) || empty($_SESSION['numConexiones']) || empty($_SESSION['ultimaConexion'])) {
+if (empty($_SESSION['usuarioDAW202AppLoginLogoffTema5'])) {
     header("Location:login.php");
     exit();
 }
@@ -39,9 +39,15 @@ if (isset($_REQUEST['aceptar'])) {
                 if (!empty($variable)) {
                     echo "<h2>$$nombre</h2>";
                     echo '<table border="1" style="border-collapse: collapse;">';
+
                     foreach ($variable as $key => $value) {
+                        // Verificamos si el valor es un objeto y lo convertimos a JSON
+                        if (is_object($value)) {
+                            $value = json_encode($value, JSON_PRETTY_PRINT);
+                        }
                         echo "<tr><td style='padding: 5px;'><strong>$key</strong></td><td style='padding: 5px;'>$value</td></tr>";
                     }
+
                     echo '</table>';
                 }
             }
@@ -52,13 +58,13 @@ if (isset($_REQUEST['aceptar'])) {
             } else {
                 echo '<h2 style="color:lightcoral;">La variable $_SESSION está vacía </h2>';
             }
-            
-             if (!empty($_COOKIE)) {
+
+            if (!empty($_COOKIE)) {
                 mostrarSuperglobal('COOKIE', $_COOKIE);
             } else {
                 echo '<h2 style="color:lightcoral;">La variable $_COOKIE está vacía </h2>';
             }
-            
+
             if (!empty($_SERVER)) {
                 mostrarSuperglobal('SERVER', $_SERVER);
             } else {
@@ -81,8 +87,8 @@ if (isset($_REQUEST['aceptar'])) {
                 mostrarSuperglobal('FILES', $_FILES);
             } else {
                 echo '<h2 style="color:lightcoral;">La variable $_FILES está vacía </h2>';
-            }         
-        
+            }
+
             if (!empty($_ENV)) {
                 mostrarSuperglobal('ENV', $_ENV);
             } else {

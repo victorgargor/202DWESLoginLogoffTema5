@@ -6,15 +6,15 @@
 // Iniciamos la sesión o reanudamos la existente mediante esta función
 session_start();
 
-//Si el usuario ya se ha autenticado previamente y no ha cerrado el navegador, se entrara a la aplicacion directamente
-if (isset($_SESSION["usuarioDAW202LoginLogoffTema5"])) {
-    header('location:programa.php');
-    exit;
+// Si el usuario ya se ha autenticado previamente y no ha cerrado el navegador, se entra a la aplicación directamente
+if (isset($_SESSION["usuarioDAW202AppLoginLogoffTema5"])) {
+    header("Location: programa.php");
+    exit();
 }
 
 // Comprobar si se ha presionado el botón de cancelar, redirigir al login
 if (!empty($_REQUEST['volver'])) {
-    header('Location:../indexProyectoLoginLogoffTema5.php');
+    header("Location: ../indexProyectoLoginLogoffTema5.php");
     exit();
 }
 
@@ -32,7 +32,7 @@ $aErrores = [
 ];
 
 // Verificar si el formulario ha sido enviado
-if (isset($_REQUEST['enviar'])) {
+if (isset($_REQUEST['iniciarsesion'])) {
 
     // Validar los campos de usuario y contraseña
     $aErrores['usuario'] = validacionFormularios::comprobarAlfaNumerico($_REQUEST['usuario'], 256, 4, 0);
@@ -83,17 +83,14 @@ if ($entradaOK) {
         $numConexionActual = $oUsuarioActivo->T01_NumConexiones + 1;
         $fechaHoraUltimaConexionAnterior = $oUsuarioActivo->T01_FechaHoraUltimaConexion;
 
-        // Guardar la información del usuario en la sesión
-        $_SESSION['usuarioDAW202AppLoginLogoffTema5'] = $oUsuarioActivo->T01_CodUsuario;
-        $_SESSION['numConexiones'] = $numConexionActual;
-        $_SESSION['ultimaConexion'] = $fechaHoraUltimaConexionAnterior;
+        // Guardar el objeto completo del usuario en la sesión
+        $_SESSION['usuarioDAW202AppLoginLogoffTema5'] = $oUsuarioActivo;
 
         // Actualizar los datos del usuario en la base de datos
-        $sql2 = 'UPDATE T01_Usuario SET T01_NumConexiones = :numConexiones, T01_FechaHoraUltimaConexion = NOW() WHERE T01_CodUsuario = :usuario';
-        $consultaActualizacion = $miDB->prepare($sql2);
-        $consultaActualizacion->bindParam(':numConexiones', $numConexionActual);
-        $consultaActualizacion->bindParam(':usuario', $_REQUEST['usuario']);
-        $consultaActualizacion->execute();
+        $sql2 = $miDB->prepare('UPDATE T01_Usuario SET T01_NumConexiones = :numConexiones, T01_FechaHoraUltimaConexion = NOW() WHERE T01_CodUsuario = :usuario');
+        $sql2->bindParam(':numConexiones', $numConexionActual);
+        $sql2->bindParam(':usuario', $_REQUEST['usuario']);
+        $sql2->execute();
 
         // Redirigir al programa principal
         header("Location: programa.php");
@@ -132,7 +129,7 @@ if ($entradaOK) {
                         <input type="password" id="password" name="password" style="background-color: lightyellow" required>
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="enviar" value="Iniciar Sesión">
+                        <input type="submit" name="iniciarsesion" value="Iniciar Sesión">
                     </div>
                 </form>
                 <form>

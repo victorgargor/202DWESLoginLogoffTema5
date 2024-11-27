@@ -1,26 +1,41 @@
 <?php
-/**
- * @author Víctor García Gordón
- * @version Fecha de última modificación 21/11/2024
- */
 // Iniciamos la sesión o reanudamos la existente mediante esta función
 session_start();
 
-if (empty($_SESSION['usuarioDAW202AppLoginLogoffTema5']) || empty($_SESSION['numConexiones']) || empty($_SESSION['ultimaConexion'])) {
-    header("Location:login.php");
+// Verificamos si el usuario está autenticado
+if (empty($_SESSION['usuarioDAW202AppLoginLogoffTema5'])) {
+    header("Location: login.php");
     exit();
+}
+
+// Obtener el objeto completo del usuario desde la sesión
+$oUsuarioActivo = $_SESSION['usuarioDAW202AppLoginLogoffTema5'];
+
+// Mostrar información del usuario
+$nombreUsuario = $oUsuarioActivo->T01_DescUsuario;
+$numConexiones = $oUsuarioActivo->T01_NumConexiones;
+$fechaUltimaConexion = $oUsuarioActivo->T01_FechaHoraUltimaConexion;
+
+// Formatear la fecha de la última conexión
+$fechaUltimaConexionFormateada = date("d/m/Y H:i:s", strtotime($fechaUltimaConexion));
+
+// Mostramos el mensaje de bienvenida dependiendo de si es la primera vez o no
+if ($numConexiones == 1) {
+    echo "<p>¡Bienvenido <b> ". $nombreUsuario." </b>! Esta es la primera vez que te conectas.</p>";
+} else {
+    echo "<p>¡Bienvenido de nuevo <b>&nbsp;". $nombreUsuario ."</b>! Esta es la <b>&nbsp;". $numConexiones. "&nbsp;</b> vez que te conectas y te conectaste por última vez el <b>&nbsp;" .$fechaUltimaConexionFormateada. "&nbsp;</b></p>";
 }
 
 if (isset($_REQUEST['detalle'])) {
     // Redirige a la página de detalle
-    header("Location:detalle.php");
+    header("Location: detalle.php");
     exit();
 }
+
+// Cerramos la sesión
 if (isset($_REQUEST['cerrarsesion'])) {
-    // Redirige a la página de login
-    session_unset();
     session_destroy();
-    header("Location:../indexProyectoLoginLogoffTema5.php");
+    header("Location: ../indexProyectoLoginLogoffTema5.php");
     exit();
 }
 ?>
@@ -33,10 +48,17 @@ if (isset($_REQUEST['cerrarsesion'])) {
         <title>Víctor García Gordón</title>
     </head>
     <body>
+        <img class="aplicacion" src="../doc/aplicacion.png" alt="aplicacion">
         <header>      
             <h1 id="inicio">PROGRAMA</h1>
         </header>
         <main>
+            <div class="descripcion-usuario">
+                <?php
+                    // Muestra el nombre del usuario en mayúsculas
+                    echo strtoupper($nombreUsuario);
+                ?>
+            </div>
             <form>
                 <input type="submit" name="detalle" value="Detalle">
             </form>

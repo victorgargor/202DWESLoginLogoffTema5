@@ -11,6 +11,12 @@ body {
     justify-content: space-between;
 }
 
+.aplicacion {
+    width: 650px;
+    height: 650px;
+    
+}
+
 /* Header */
 header {
     background-color: #24292f;
@@ -39,6 +45,36 @@ main {
     height: 100vh; /* Altura de la pantalla completa */
     padding: 20px;
     box-sizing: border-box;
+    flex-direction: column;
+}
+
+.descripcion-usuario {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase; /* Hace que el texto esté en mayúsculas */ 
+    color: white; /* Color del texto */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.descripcion-usuario {
+    padding: 8px 20px;
+    position: fixed;
+    top: 17.5px;
+    left: 1525px;
+    z-index: 1001;
+}
+
+p {
+    display: flex;
+    justify-content: center; /* Centrado en el eje X */
+    align-items: flex-end;     /* Centrado en el eje Y */
+    height: 100%;            /* Asegura que el <p> ocupe toda la altura del contenedor */
+    margin: 0;               /* Elimina márgenes predeterminados */
+    padding: 20px;           /* Espaciado interno para que el texto no esté pegado al borde */
+    color: #24292f;          /* Color del texto en gris oscuro */
+    font-size: 18px;        /* Tamaño de fuente adecuado */
+    text-align: center;      /* Alineación del texto en el centro */
+    line-height: 1.5;        /* Espaciado entre líneas */
 }
 
 input[name="cerrarsesion"] {
@@ -142,6 +178,11 @@ footer img {
 
     footer {
         padding: 10px;
+    }
+
+    p {
+        font-size: 14px; /* Ajuste el tamaño de fuente para pantallas pequeñas */
+        padding: 15px;   /* Reduce el padding para pantallas más pequeñas */
     }
 }
 
