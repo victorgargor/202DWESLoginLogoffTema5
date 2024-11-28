@@ -3,6 +3,17 @@
  * @author Víctor García Gordón
  * @version Fecha de última modificación 25/11/2024
  */
+// Si la cookie está vacia se crea y se le pone un valor por defecto
+if (!isset($_COOKIE['idioma'])) {
+	setcookie("idioma", "es", time() + 60, "/");
+}
+
+// Si el idioma enviado está vacio o es null
+if (isset($_REQUEST['idioma'])) {	
+	setcookie("idioma", $_REQUEST['idioma'], time() + 60, "/");
+	header('Location: ' . $_SERVER['PHP_SELF']);
+	exit();
+}
 
 // Redirige a la página de login si se pulsa el botón
 if (isset($_REQUEST['login'])) {
@@ -39,6 +50,17 @@ $readmeHTML = $Pars
             <section>
                 <div id="readme-content">
                     <?= $readmeHTML; ?>
+                </div>
+                <div>
+                    <a class="españa" href="?idioma=es">
+                        <img src="doc/españa.png" alt="es">
+                    </a>
+                    <a class="inglaterra" href="?idioma=en">
+                        <img src="doc/inglaterra.png" alt="en">
+                    </a>
+                    <a class="portugal" href="?idioma=pt">
+                        <img src="doc/portugal.jpg" alt="pt">
+                    </a>
                 </div>
             </section>
         </main>

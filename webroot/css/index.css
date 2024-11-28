@@ -131,6 +131,61 @@ main {
     max-height: 700px;
 }
 
+/* Contenedor de las banderas */
+#readme-content div {
+    text-align: center;
+    margin-top: 20px; /* Un pequeño espacio encima de las banderas */
+    position: fixed;
+}
+
+.españa{
+    margin: 0 10px; /* Espaciado entre las banderas */
+    display: inline-block;
+    position: fixed;
+    top: 22px;
+    left: 400px;
+    z-index: 1001;
+}
+
+.inglaterra{
+    margin: 0 10px; /* Espaciado entre las banderas */
+    display: inline-block;
+    position: fixed;
+    top: 24px;
+    left: 470px;
+    z-index: 1001;
+    height: 50px;
+}
+
+.portugal{
+    margin: 0 10px; /* Espaciado entre las banderas */
+    display: inline-block;
+    position: fixed;
+    top: 22px;
+    left: 540px;
+    z-index: 1001;
+}
+
+/* Estilo para las imágenes de las banderas */
+.españa img , .inglaterra img, .portugal img{
+    width: 40px; /* Ajusta el tamaño de las banderas */
+    height: auto; /* Mantiene la proporción de la imagen */
+    transition: transform 0.3s ease; /* Añadimos una transición para el hover */
+}
+
+/* Efecto hover */
+.españa img:hover {
+    transform: scale(1.1); /* Aumenta un poco el tamaño de la bandera cuando el cursor pasa por encima */
+}
+
+.inglaterra img:hover {
+    transform: scale(1.1); /* Aumenta un poco el tamaño de la bandera cuando el cursor pasa por encima */
+}
+
+.portugal img:hover {
+    transform: scale(1.1); /* Aumenta un poco el tamaño de la bandera cuando el cursor pasa por encima */
+}
+
 /* Tabla */
 table {
     width: 100%;
@@ -254,6 +309,10 @@ footer img {
     
     #readme-content img {
         max-height: 300px; /* Reduce la altura máxima en pantallas pequeñas */
+    }
+    
+    .bandera img {
+        width: 35px; /* Reduce el tamaño de las banderas en pantallas pequeñas */
     }
 }
 

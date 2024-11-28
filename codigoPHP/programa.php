@@ -8,23 +8,53 @@ if (empty($_SESSION['usuarioDAW202AppLoginLogoffTema5'])) {
     exit();
 }
 
+// Obtener el idioma de la cookie, si no está establecida, se usa 'es' como predeterminado
+$idioma = isset($_COOKIE['idioma']) ? $_COOKIE['idioma'] : 'es';
+
 // Obtener el objeto completo del usuario desde la sesión
 $oUsuarioActivo = $_SESSION['usuarioDAW202AppLoginLogoffTema5'];
 
 // Mostrar información del usuario
 $nombreUsuario = $oUsuarioActivo->T01_DescUsuario;
-$numConexiones = $oUsuarioActivo->T01_NumConexiones+1;
+$numConexiones = $oUsuarioActivo->T01_NumConexiones + 1;
 $fechaUltimaConexion = $oUsuarioActivo->T01_FechaHoraUltimaConexion;
 
 // Formatear la fecha de la última conexión
 $fechaUltimaConexionFormateada = date("d/m/Y H:i:s", strtotime($fechaUltimaConexion));
 
-// Mostramos el mensaje de bienvenida dependiendo de si es la primera vez o no
+// Definir los mensajes de bienvenida en los distintos idiomas
+$mensajesBienvenida = [
+    'es' => [
+        'primera_vez' => "¡Bienvenido <b> &nbsp;{nombre} </b>! Esta es la primera vez que te conectas.",
+        'vuelta' => "¡Bienvenido de nuevo <b>&nbsp;{nombre}</b>! Esta es la <b>&nbsp;{numConexiones}&nbsp;</b> vez que te conectas y te conectaste por última vez el <b>&nbsp;{fechaUltimaConexion}&nbsp;</b>"
+    ],
+    'en' => [
+        'primera_vez' => "Welcome <b> &nbsp;{nombre} </b>! This is the first time you have logged in.",
+        'vuelta' => "Welcome back <b>&nbsp;{nombre}</b>! This is the <b>&nbsp;{numConexiones}&nbsp;</b> time you have logged in, and you last logged in on <b>&nbsp;{fechaUltimaConexion}&nbsp;</b>"
+    ],
+    'pt' => [
+        'primera_vez' => "Bem-vindo <b> &nbsp;{nombre} </b>! Esta é a primeira vez que você se conecta.",
+        'vuelta' => "Bem-vindo de volta <b>&nbsp;{nombre}</b>! Esta é a <b>&nbsp;{numConexiones}&nbsp;</b> vez que você se conecta, e você se conectou pela última vez em <b>&nbsp;{fechaUltimaConexion}&nbsp;</b>"
+    ]
+];
+
+// Determinar el mensaje a mostrar en función del número de conexiones
 if ($numConexiones == 1) {
-    echo "<p>¡Bienvenido <b> &nbsp". $nombreUsuario." </b>! Esta es la primera vez que te conectas.</p>";
+    // Primera vez que el usuario se conecta
+    $mensaje = $mensajesBienvenida[$idioma]['primera_vez'];
 } else {
-    echo "<p>¡Bienvenido de nuevo <b>&nbsp;". $nombreUsuario ."</b>! Esta es la <b>&nbsp;". $numConexiones. "&nbsp;</b> vez que te conectas y te conectaste por última vez el <b>&nbsp;" .$fechaUltimaConexionFormateada. "&nbsp;</b></p>";
+    // No es la primera vez
+    $mensaje = $mensajesBienvenida[$idioma]['vuelta'];
 }
+
+// Reemplazar los marcadores de posición en el mensaje con los valores reales
+$mensaje = str_replace(
+    ['{nombre}', '{numConexiones}', '{fechaUltimaConexion}'],
+    [$nombreUsuario, $numConexiones, $fechaUltimaConexionFormateada],
+    $mensaje
+);
+
+echo "<p>" . $mensaje . "</p>";
 
 if (isset($_REQUEST['detalle'])) {
     // Redirige a la página de detalle
@@ -76,3 +106,4 @@ if (isset($_REQUEST['cerrarsesion'])) {
         </footer>
     </body>
 </html>
+
