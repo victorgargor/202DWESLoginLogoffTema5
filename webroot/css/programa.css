@@ -1,0 +1,188 @@
+/* Estilos Generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f8fa;
+    color: #24292f;
+    height: 100%; /* Aseguramos que el body ocupe toda la altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.aplicacion {
+    width: 700px;
+    height: 700px;
+}
+
+/* Header */
+header {
+    background-color: #24292f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #ffffff;
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Contenedor principal */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura de la pantalla completa */
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.descripcion-usuario {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase; /* Hace que el texto esté en mayúsculas */ 
+    color: white; /* Color del texto */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.descripcion-usuario {
+    padding: 8px 20px;
+    position: fixed;
+    top: 17.5px;
+    left: 1500px;
+    z-index: 1001;
+}
+
+p {
+    display: flex;
+    justify-content: center; /* Centrado en el eje X */
+    align-items: flex-end;     /* Centrado en el eje Y */
+    height: 100%;            /* Asegura que el <p> ocupe toda la altura del contenedor */
+    margin: 0;               /* Elimina márgenes predeterminados */
+    padding: 20px;           /* Espaciado interno para que el texto no esté pegado al borde */
+    color: #24292f;          /* Color del texto en gris oscuro */
+    font-size: 18px;        /* Tamaño de fuente adecuado */
+    text-align: center;      /* Alineación del texto en el centro */
+    line-height: 1.5;        /* Espaciado entre líneas */
+}
+
+input[name="cerrarsesion"] {
+    background-color: #ffffff;
+    color: #24292f;
+    font-size: 14px;
+    padding: 8px 20px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: fixed;
+    top: 17.5px;
+    left: 20px;
+    z-index: 1001;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[name="cerrarsesion"]:hover {
+    background-color: #0366d6;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+input[name="cerrarsesion"]:active {
+    background-color: #005bb5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+input[name="detalle"] {
+    background-color: #ffffff;
+    color: #24292f;
+    font-size: 14px;
+    padding: 8px 20px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: fixed;
+    top: 17.5px;
+    right: 20px;
+    z-index: 1001;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[name="detalle"]:hover {
+    background-color: #0366d6;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+input[name="detalle"]:active {
+    background-color: #005bb5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+/* Footer */
+footer {
+    background-color: #24292f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: lightblue;
+}
+
+footer img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+
+    main {
+        padding: 80px 10px;
+        padding-bottom: 100px;
+    }
+
+    footer {
+        padding: 10px;
+    }
+
+    p {
+        font-size: 14px; /* Ajuste el tamaño de fuente para pantallas pequeñas */
+        padding: 15px;   /* Reduce el padding para pantallas más pequeñas */
+    }
+}
+
+
