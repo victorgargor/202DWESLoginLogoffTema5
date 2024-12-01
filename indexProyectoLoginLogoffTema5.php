@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Víctor García Gordón
- * @version Fecha de última modificación 25/11/2024
+ * @version Fecha de última modificación 01/12/2024
  */
 // Si la cookie está vacia se crea y se le pone un valor por defecto
 if (!isset($_COOKIE['idioma'])) {
@@ -59,7 +59,7 @@ $readmeHTML = $Pars
                         <img src="doc/inglaterra.png" alt="en">
                     </a>
                     <a class="portugal" href="?idioma=pt">
-                        <img src="doc/portugal.jpg" alt="pt">
+                        <img src="doc/portugal.png" alt="pt">
                     </a>
                 </div>
             </section>

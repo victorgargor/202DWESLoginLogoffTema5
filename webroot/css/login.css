@@ -103,6 +103,34 @@ input[name="iniciarsesion"]:active {
     transform: translateY(0);
 }
 
+/* Botón registrarse */
+input[name="registrarse"] {
+    background-color: #ffffff;
+    color: #24292f;
+    font-size: 14px;
+    padding: 8px 20px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%; /* Que ocupe todo el ancho del formulario */
+}
+
+/* Efecto hover para registrarse */
+input[name="registrarse"]:hover {
+    background-color: #0366d6;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Efecto activo (clic) para registrarse */
+input[name="registrarse"]:active {
+    background-color: #005bb5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
 /* Botón Volver */
 input[name="volver"] {
     background-color: #ffffff;
@@ -130,6 +158,38 @@ input[name="volver"]:hover {
 
 /* Efecto activo (clic) para Volver */
 input[name="volver"]:active {
+    background-color: #005bb5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+/* Botón Cancelar */
+input[name="cancelar"] {
+    background-color: #ffffff;
+    color: #24292f;
+    font-size: 14px;
+    padding: 8px 20px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: fixed;
+    top: 17.5px;
+    right: 20px;
+    z-index: 1001;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto hover para Cancelar */
+input[name="cancelar"]:hover {
+    background-color: #0366d6;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Efecto activo (clic) para Cancelar */
+input[name="cancelar"]:active {
     background-color: #005bb5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transform: translateY(0);

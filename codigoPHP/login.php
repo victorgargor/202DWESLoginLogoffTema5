@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Víctor García Gordón
- * @version Fecha de última modificación 26/11/2024
+ * @version Fecha de última modificación 01/12/2024
  */
 // Iniciamos la sesión o reanudamos la existente mediante esta función
 session_start();
@@ -12,15 +12,21 @@ if (isset($_SESSION["usuarioDAW202AppLoginLogoffTema5"])) {
     exit();
 }
 
-// Comprobar si se ha presionado el botón de cancelar, redirigir al login
+// Comprobar si se ha presionado el botón de volver, redirigir al login
 if (!empty($_REQUEST['volver'])) {
     header("Location: ../indexProyectoLoginLogoffTema5.php");
     exit();
 }
 
+// Comprobar si se ha presionado el botón de registrarse, redirigir al registro
+if (!empty($_REQUEST['registrarse'])) {
+    header("Location: registro.php");
+    exit();
+}
+
 // Incluir archivos necesarios para la validación y la conexión a la base de datos
 require_once('../core/231018libreriaValidacion.php');
-require_once('../config/ConfDBPDO.php');
+require_once('../config/ConfDBPDOEE.php');
 
 // Variable que indica si las respuestas son correctas
 $entradaOK = true;
@@ -124,6 +130,9 @@ if ($entradaOK) {
                     </div>
                     <div class="form-group">
                         <input type="submit" name="iniciarsesion" value="Iniciar Sesión">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="registrarse" value="Registrarse">
                     </div>
                 </form>
                 <form>

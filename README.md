@@ -4,7 +4,7 @@
 
 - **Autor**: Víctor García Gordón
 - **Fecha de Inicio del Proyecto**: 21/11/2024
-- **Última Actualización**: 21/11/2024
+- **Última Actualización**: 01/12/2024
 
 ---
 
@@ -81,6 +81,8 @@ Incluye además el manejo de **cookies**, **sesiones** y una implementación bá
 - URL: [http://daw202.isauces.local/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php](http://daw202.isauces.local/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php)
 
 ### Entorno de Explotación
+
+- URL: [https://victorgargon.informatica.ieslossauces.es/202DWESProyectoLoginLogoffTema5/indexProyectoLoginLogoffTema5.php](https://victorgargon.informatica.ieslossauces.es/202DWESProyectoLoginLogoffTema5/indexProyectoLoginLogoffTema5.php)
 
 ---
 
