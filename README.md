@@ -82,7 +82,7 @@ Incluye además el manejo de **cookies**, **sesiones** y una implementación bá
 
 ### Entorno de Explotación
 
-- URL: [https://victorgargon.informatica.ieslossauces.es/202DWESProyectoLoginLogoffTema5/indexProyectoLoginLogoffTema5.php](https://victorgargon.informatica.ieslossauces.es/202DWESProyectoLoginLogoffTema5/indexProyectoLoginLogoffTema5.php)
+- URL: [https://victorgargon.informatica.ieslossauces.es/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php](https://victorgargon.informatica.ieslossauces.es/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php)
 
 ---
 
