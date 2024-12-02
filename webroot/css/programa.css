@@ -59,7 +59,7 @@ main {
     padding: 8px 20px;
     position: fixed;
     top: 17.5px;
-    left: 1500px;
+    left: 1350px;
     z-index: 1001;
 }
 
@@ -76,7 +76,7 @@ p {
     line-height: 1.5;        /* Espaciado entre líneas */
 }
 
-input[name="cerrarsesion"] {
+input[name="detalle"] {
     background-color: #ffffff;
     color: #24292f;
     font-size: 14px;
@@ -88,6 +88,64 @@ input[name="cerrarsesion"] {
     position: fixed;
     top: 17.5px;
     left: 20px;
+    z-index: 1001;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[name="detalle"]:hover {
+    background-color: #0366d6;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+input[name="detalle"]:active {
+    background-color: #005bb5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+input[name="mtodepartamentos"] {
+    background-color: #ffffff;
+    color: #24292f;
+    font-size: 14px;
+    padding: 8px 20px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: fixed;
+    top: 17.5px;
+    left: 150px;
+    z-index: 1001;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[name="mtodepartamentos"]:hover {
+    background-color: #0366d6;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+input[name="mtodepartamentos"]:active {
+    background-color: #005bb5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+input[name="cerrarsesion"] {
+    background-color: #ffffff;
+    color: #24292f;
+    font-size: 14px;
+    padding: 8px 20px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: fixed;
+    top: 17.2px;
+    right: 20px;
     z-index: 1001;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -105,7 +163,7 @@ input[name="cerrarsesion"]:active {
     transform: translateY(0);
 }
 
-input[name="detalle"] {
+input[name="editarperfil"] {
     background-color: #ffffff;
     color: #24292f;
     font-size: 14px;
@@ -116,19 +174,19 @@ input[name="detalle"] {
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
     position: fixed;
     top: 17.5px;
-    right: 20px;
+    left: 1635px;
     z-index: 1001;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-input[name="detalle"]:hover {
+input[name="editarperfil"]:hover {
     background-color: #0366d6;
     color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
 
-input[name="detalle"]:active {
+input[name="editarperfil"]:active {
     background-color: #005bb5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transform: translateY(0);

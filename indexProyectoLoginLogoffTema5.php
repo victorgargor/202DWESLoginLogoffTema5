@@ -5,7 +5,7 @@
  */
 // Si la cookie está vacia se crea y se le pone un valor por defecto
 if (!isset($_COOKIE['idioma'])) {
-	setcookie("idioma", "es", time() + 60, "/");
+	setcookie("idioma", "es", time() + 3600, "/");
 }
 
 // Si el idioma enviado está vacio o es null

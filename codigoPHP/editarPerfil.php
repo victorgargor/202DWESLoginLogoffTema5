@@ -11,13 +11,18 @@ if (!empty($_REQUEST['cancelar'])) {
     header("Location: programa.php");
     exit();
 }
+
+if (!empty($_REQUEST['cambiarpassword'])) {
+    header("Location: cambiarPassword.php");
+    exit();
+}
     ?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../webroot/css/login.css" type="text/css">
+        <link rel="stylesheet" href="../webroot/css/editarperfil.css" type="text/css">
         <title>EDITAR PERFIL</title>
     </head>
     <body>
@@ -25,6 +30,9 @@ if (!empty($_REQUEST['cancelar'])) {
             <h1>EDITAR PERFIL</h1>
         </header>
         <main>
+            <form>
+                <input type="submit" name="cambiarpassword" value="Cambiar password">
+            </form>
             <form>
                 <input type="submit" name="cancelar" value="Cancelar">
             </form>

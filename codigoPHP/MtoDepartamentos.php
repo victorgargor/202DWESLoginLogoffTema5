@@ -39,5 +39,3 @@ if (!empty($_REQUEST['volver'])) {
         </footer>
     </body>
 </html>
-
-
