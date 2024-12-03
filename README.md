@@ -78,11 +78,11 @@ Incluye además el manejo de **cookies**, **sesiones** y una implementación bá
 
 ### Entorno de Desarrollo (Local)
 
-- URL: [http://daw202.isauces.local/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php](http://daw202.isauces.local/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php)
+[http://daw202.isauces.local/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php](http://daw202.isauces.local/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php)
 
 ### Entorno de Explotación
 
-- URL: [https://victorgargon.informatica.ieslossauces.es/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php](https://victorgargon.informatica.ieslossauces.es/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php)
+[https://victorgargon.informatica.ieslossauces.es/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php](https://victorgargon.informatica.ieslossauces.es/202DWESLoginLogoffTema5/indexProyectoLoginLogoffTema5.php)
 
 ---
 
