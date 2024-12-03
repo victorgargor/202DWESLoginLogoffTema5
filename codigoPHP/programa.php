@@ -54,7 +54,7 @@ $mensaje = str_replace(
     $mensaje
 );
 
-echo "<p>" . $mensaje . "</p>";
+echo "<p id = 'mensaje-bienvenida'>" . $mensaje . "</p>";
 
 if (isset($_REQUEST['editarperfil'])) {
     // Redirige a la página de editarPerfil
@@ -86,7 +86,7 @@ if (isset($_REQUEST['cerrarsesion'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../webroot/css/programa.css" type="text/css">
+        <link rel="stylesheet" href="../webroot/css/aplicacion.css" type="text/css">
         <title>Víctor García Gordón</title>
     </head>
     <body>

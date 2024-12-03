@@ -22,14 +22,15 @@ if (isset($_REQUEST['aceptar'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../webroot/css/detalle.css" type="text/css">
+        <link rel="stylesheet" href="../webroot/css/aplicacion.css" type="text/css">
         <title>Víctor García Gordón</title>
     </head>
     <body>
         <header>
             <h1 id="inicio">DETALLE</h1>
         </header>
-        <main>  
+        <div>
+            <br/>
             <form>
                 <input type="submit" name="aceptar" value="Aceptar">
             </form>
@@ -104,7 +105,7 @@ if (isset($_REQUEST['aceptar'])) {
             // Mostrar la configuración de PHP            
             phpinfo();
             ?>
-        </main>
+        </div>
     </body>
 </html>
 
