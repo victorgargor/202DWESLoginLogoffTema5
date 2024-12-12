@@ -5,14 +5,14 @@
  */
 // Si la cookie está vacia se crea y se le pone un valor por defecto
 if (!isset($_COOKIE['idioma'])) {
-	setcookie("idioma", "es", time() + 3600, "/");
+    setcookie("idioma", "es", time() + 3600, "/");
 }
 
 // Si el idioma enviado está vacio o es null
-if (isset($_REQUEST['idioma'])) {	
-	setcookie("idioma", $_REQUEST['idioma'], time() + 60, "/");
-	header('Location: ' . $_SERVER['PHP_SELF']);
-	exit();
+if (isset($_REQUEST['idioma'])) {
+    setcookie("idioma", $_REQUEST['idioma'], time() + 60, "/");
+    header('Location: ' . $_SERVER['PHP_SELF']);
+    exit();
 }
 
 // Redirige a la página de login si se pulsa el botón
@@ -36,7 +36,7 @@ $readmeHTML = $Pars
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="webroot/css/index.css" type="text/css">
+        <link rel="stylesheet" href="webroot/css/aplicacion.css" type="text/css">
         <title>Víctor García Gordón</title>
     </head>
     <body>
@@ -73,6 +73,75 @@ $readmeHTML = $Pars
                 <a target="blank" href="https://github.com">Web Imitada</a>
             </div>
         </footer>
+         <script>
+            // Función para restaurar el tamaño original de las banderas
+            function restaurarTamanoOriginal() {
+                const banderas = ['españa', 'inglaterra', 'portugal'];
+                banderas.forEach(bandera => {
+                    const imagenBandera = document.querySelector(`.${bandera} img`);
+                    if (imagenBandera) {
+                        imagenBandera.style.transform = 'scale(1)'; // Restauramos el tamaño original
+                    }
+                });
+            }
+
+            // Función para reducir el tamaño de las demás banderas
+            function reducirOtrasBanderas(claseBandera) {
+                const banderas = ['españa', 'inglaterra', 'portugal'];
+                banderas.forEach(bandera => {
+                    if (bandera !== claseBandera) {
+                        const imagenBandera = document.querySelector(`.${bandera} img`);
+                        if (imagenBandera) {
+                            imagenBandera.style.transform = 'scale(0.5)'; // Reducir otras banderas
+                        }
+                    }
+                });
+            }
+
+            // Función para obtener el idioma desde la cookie
+            function obtenerIdiomaCookie() {
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    cookie = cookie.trim();
+                    if (cookie.startsWith('idioma=')) {
+                        return cookie.substring('idioma='.length);
+                    }
+                }
+                return 'es'; // Valor predeterminado si no hay cookie
+            }
+
+            // Recuperar el idioma guardado al cargar la página
+            window.onload = function () {
+                const idiomaGuardado = obtenerIdiomaCookie();
+                
+                // Restaurar tamaño de las banderas y reducir las otras según el idioma
+                restaurarTamanoOriginal(); // Restauramos el tamaño de todas las banderas
+
+                if (idiomaGuardado === 'es') {
+                    reducirOtrasBanderas('españa');
+                } else if (idiomaGuardado === 'en') {
+                    reducirOtrasBanderas('inglaterra');
+                } else if (idiomaGuardado === 'pt') {
+                    reducirOtrasBanderas('portugal');
+                }
+            };
+
+            // Event listeners para cambiar el tamaño de la bandera y restaurar el tamaño de las otras
+            document.querySelector('.españa').addEventListener('click', function () {
+                restaurarTamanoOriginal(); // Restaurar tamaño de todas las banderas
+                reducirOtrasBanderas('españa');
+            });
+
+            document.querySelector('.inglaterra').addEventListener('click', function () {
+                restaurarTamanoOriginal(); // Restaurar tamaño de todas las banderas
+                reducirOtrasBanderas('inglaterra');
+            });
+
+            document.querySelector('.portugal').addEventListener('click', function () {
+                restaurarTamanoOriginal(); // Restaurar tamaño de todas las banderas
+                reducirOtrasBanderas('portugal');
+            });
+        </script>
     </body>
 </html>
 

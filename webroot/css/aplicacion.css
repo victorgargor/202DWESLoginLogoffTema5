@@ -10,11 +10,6 @@ body {
     justify-content: space-between;
 }
 
-.aplicacion {
-    width: 700px;
-    height: 700px;
-}
-
 #mensaje-bienvenida {
     display: flex;
     justify-content: center; 
@@ -42,23 +37,20 @@ td {
 }
 
 td strong {
-    color: #0366d6; /* Para resaltar las claves */
+    color: #0366d6; 
 }
 
-/* Título de la superglobal centrado */
 h2 {
     color: #24292f;
     font-size: 20px;
     margin: 20px 0;
-    text-align: center; /* Centra el título de la superglobal */
+    text-align: center; 
 }
 
-/* Mensajes de error */
 h2.error {
     color: lightcoral;
 }
 
-/* Header */
 header {
     background-color: #24292f;
     color: white;
@@ -78,59 +70,13 @@ header h1 {
     margin: 0;
 }
 
-/* Contenedor principal */
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Altura de la pantalla completa */
+    height: 100vh; 
     padding: 20px;
     box-sizing: border-box;
-}
-
-.descripcion-usuario {
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase; /* Hace que el texto esté en mayúsculas */ 
-    color: white; /* Color del texto */
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
-}
-
-.descripcion-usuario {
-    padding: 8px 20px;
-    position: fixed;
-    top: 17.5px;
-    left: 1350px;
-    z-index: 1001;
-}
-
-input[name="aceptar"] {
-    background-color: #ffffff;
-    color: #24292f;
-    font-size: 14px;
-    padding: 8px 20px;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    position: fixed;
-    top: 17.5px;
-    right: 20px;
-    z-index: 1001;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-input[name="aceptar"]:hover {
-    background-color: #0366d6;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-input[name="aceptar"]:active {
-    background-color: #005bb5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
 }
 
 input[name="detalle"] {
@@ -162,70 +108,6 @@ input[name="detalle"]:active {
     transform: translateY(0);
 }
 
-input[name="mtodepartamentos"] {
-    background-color: #ffffff;
-    color: #24292f;
-    font-size: 14px;
-    padding: 8px 20px;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    position: fixed;
-    top: 17.5px;
-    left: 150px;
-    z-index: 1001;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-input[name="mtodepartamentos"]:hover {
-    background-color: #0366d6;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-input[name="mtodepartamentos"]:active {
-    background-color: #005bb5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-}
-
-/* Formulario de Login */
-form:first-of-type {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px; /* Limitar el ancho máximo del formulario */
-}
-
-/* Campos del formulario de login */
-form:first-of-type .form-group {
-    margin-bottom: 15px;
-}
-
-form:first-of-type .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-form:first-of-type .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-form:first-of-type .form-group input:focus {
-    border-color: #0366d6;
-    outline: none;
-}
-
-/* Botón Iniciar sesión */
 input[name="iniciarsesion"] {
     background-color: #ffffff;
     color: #24292f;
@@ -235,25 +117,22 @@ input[name="iniciarsesion"] {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    width: 100%; /* Que ocupe todo el ancho del formulario */
+    width: 100%; 
 }
 
-/* Efecto hover para Iniciar sesión */
-input[name="iniciarsesion"]:hover {
+input[name="iniciarsesion"]:hover, input[name="registrarse"]:hover{
     background-color: #0366d6;
     color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
 
-/* Efecto activo (clic) para Iniciar sesión */
-input[name="iniciarsesion"]:active {
+input[name="iniciarsesion"]:active, input[name="registrarse"]:active {
     background-color: #005bb5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transform: translateY(0);
 }
 
-/* Botón registrarse */
 input[name="registrarse"] {
     background-color: #ffffff;
     color: #24292f;
@@ -266,23 +145,8 @@ input[name="registrarse"] {
     width: 100%; /* Que ocupe todo el ancho del formulario */
 }
 
-/* Efecto hover para registrarse */
-input[name="registrarse"]:hover {
-    background-color: #0366d6;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-/* Efecto activo (clic) para registrarse */
-input[name="registrarse"]:active {
-    background-color: #005bb5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-}
-
-/* Botón Volver */
-input[name="volver"] {
+input[name="login"], input[name="volver"], input[name="cerrarsesion"], 
+input[name="cancelar"], input[name="aceptar"] {
     background-color: #ffffff;
     color: #24292f;
     font-size: 14px;
@@ -298,173 +162,21 @@ input[name="volver"] {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Efecto hover para Volver */
-input[name="volver"]:hover {
+input[name="login"]:hover, input[name="volver"]:hover, input[name="cerrarsesion"]:hover, 
+input[name="cancelar"]:hover, input[name="aceptar"]:hover {
     background-color: #0366d6;
     color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
 
-/* Efecto activo (clic) para Volver */
-input[name="volver"]:active {
+input[name="login"]:active, input[name="volver"]:active, input[name="cerrarsesion"]:active, 
+input[name="cancelar"]:active, input[name="aceptar"]:active{
     background-color: #005bb5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transform: translateY(0);
 }
 
-/* Botón Cancelar */
-input[name="cancelar"] {
-    background-color: #ffffff;
-    color: #24292f;
-    font-size: 14px;
-    padding: 8px 20px;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    position: fixed;
-    top: 17.5px;
-    right: 20px;
-    z-index: 1001;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Efecto hover para Cancelar */
-input[name="cancelar"]:hover {
-    background-color: #0366d6;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-/* Efecto activo (clic) para Cancelar */
-input[name="cancelar"]:active {
-    background-color: #005bb5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-}
-
-/* Botón Cancelar */
-input[name="login"] {
-    background-color: #ffffff;
-    color: #24292f;
-    font-size: 14px;
-    padding: 8px 20px;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    position: fixed;
-    top: 17.5px;
-    right: 20px;
-    z-index: 1001;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Efecto hover para Cancelar */
-input[name="login"]:hover {
-    background-color: #0366d6;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-/* Efecto activo (clic) para Cancelar */
-input[name="login"]:active {
-    background-color: #005bb5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-}
-
-input[name="cambiarpassword"] {
-    background-color: #ffffff;
-    color: #24292f;
-    font-size: 14px;
-    padding: 8px 20px;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    position: fixed;
-    top: 17.5px;
-    left: 20px;
-    z-index: 1001;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-input[name="cambiarpassword"]:hover {
-    background-color: #0366d6;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-input[name="cambiarpassword"]:active {
-    background-color: #005bb5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-}
-
-input[name="cerrarsesion"] {
-    background-color: #ffffff;
-    color: #24292f;
-    font-size: 14px;
-    padding: 8px 20px;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    position: fixed;
-    top: 17.2px;
-    right: 20px;
-    z-index: 1001;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-input[name="cerrarsesion"]:hover {
-    background-color: #0366d6;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-input[name="cerrarsesion"]:active {
-    background-color: #005bb5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-}
-
-input[name="editarperfil"] {
-    background-color: #ffffff;
-    color: #24292f;
-    font-size: 14px;
-    padding: 8px 20px;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    position: fixed;
-    top: 17.5px;
-    left: 1635px;
-    z-index: 1001;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-input[name="editarperfil"]:hover {
-    background-color: #0366d6;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-input[name="editarperfil"]:active {
-    background-color: #005bb5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-}
-
-/* Footer */
 footer {
     background-color: #24292f;
     color: white;
@@ -494,7 +206,6 @@ footer img {
     vertical-align: middle;
 }
 
-/* Estilo para el contenido del README */
 #readme-content {
     font-family: "Segoe UI", Arial, sans-serif;
     background-color: #ffffff;
@@ -503,11 +214,13 @@ footer img {
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 800px;
+    max-height: 700px;
+    overflow-y: auto;
+    overflow-x: hidden;
     margin: 0 auto;
     line-height: 1.6;
 }
 
-/* Encabezados */
 #readme-content h1, 
 #readme-content h2, 
 #readme-content h3 {
@@ -530,7 +243,6 @@ footer img {
     font-size: 20px;
 }
 
-/* Listas */
 #readme-content ul {
     list-style-type: disc;
     margin-left: 20px;
@@ -543,7 +255,6 @@ footer img {
     padding-left: 20px;
 }
 
-/* Elementos en negrita y cursiva */
 #readme-content strong {
     font-weight: bold;
 }
@@ -552,7 +263,6 @@ footer img {
     font-style: italic;
 }
 
-/* Enlaces */
 #readme-content a {
     color: #0366d6;
     text-decoration: none;
@@ -562,7 +272,6 @@ footer img {
     text-decoration: underline;
 }
 
-/* Bloques de código */
 #readme-content pre {
     background-color: #f6f8fa;
     padding: 10px;
@@ -592,62 +301,127 @@ footer img {
     max-height: 700px;
 }
 
-/* Contenedor de las banderas */
 #readme-content div {
     text-align: center;
-    margin-top: 20px; /* Un pequeño espacio encima de las banderas */
+    margin-top: 20px; 
     position: fixed;
 }
 
+.login {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Limitar el ancho máximo del formulario */
+}
+
+.login .form-group {
+    margin-bottom: 15px;
+}
+
+.login .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.login .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login .form-group input:focus {
+    border-color: #0366d6;
+    outline: none;
+}
+
+
+.descripcion-usuario {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase; 
+    color: white; 
+    width: 100%; 
+}
+
+.descripcion-usuario {
+    padding: 8px 20px;
+    position: fixed;
+    top: 17.5px;
+    left: 1475px;
+    z-index: 1001;
+}
+
+.aplicacion {
+    display: block;
+    margin: 40px auto 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.detalle{
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    max-height: 700px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 100px auto 0;
+}
+
 .españa{
-    margin: 0 10px; /* Espaciado entre las banderas */
+    margin: 0 10px; 
     display: inline-block;
     position: fixed;
     top: 22px;
-    left: 400px;
+    left: 100px;
     z-index: 1001;
 }
 
 .inglaterra{
-    margin: 0 10px; /* Espaciado entre las banderas */
+    margin: 0 10px; 
     display: inline-block;
     position: fixed;
     top: 24px;
-    left: 470px;
+    left: 200px;
     z-index: 1001;
     height: 50px;
 }
 
 .portugal{
-    margin: 0 10px; /* Espaciado entre las banderas */
+    margin: 0 10px; 
     display: inline-block;
     position: fixed;
     top: 22px;
-    left: 540px;
+    left: 300px;
     z-index: 1001;
 }
-
-/* Estilo para las imágenes de las banderas */
 .españa img , .inglaterra img, .portugal img{
-    width: 40px; /* Ajusta el tamaño de las banderas */
-    height: auto; /* Mantiene la proporción de la imagen */
-    transition: transform 0.3s ease; /* Añadimos una transición para el hover */
+    width: 40px; 
+    height: auto; 
+    transition: transform 0.3s ease; 
 }
 
-/* Efecto hover */
 .españa img:hover {
-    transform: scale(1.1); /* Aumenta un poco el tamaño de la bandera cuando el cursor pasa por encima */
+    transform: scale(1.1); 
 }
 
 .inglaterra img:hover {
-    transform: scale(1.1); /* Aumenta un poco el tamaño de la bandera cuando el cursor pasa por encima */
+    transform: scale(1.1);
 }
 
 .portugal img:hover {
-    transform: scale(1.1); /* Aumenta un poco el tamaño de la bandera cuando el cursor pasa por encima */
+    transform: scale(1.1);
 }
 
-/* Responsividad */
 @media (max-width: 768px) {
     header {
         padding: 10px;
@@ -658,25 +432,20 @@ footer img {
         padding-bottom: 100px;
     }
 
+    #readme-content {
+        padding: 10px;
+    }
+
     footer {
         padding: 10px;
     }
     
-    p {
-        font-size: 14px; /* Ajuste el tamaño de fuente para pantallas pequeñas */
-        padding: 15px;   /* Reduce el padding para pantallas más pequeñas */
-    }
-    
-    #readme-content {
-        padding: 10px;
-    }
-    
-    
     #readme-content img {
-        max-height: 300px; /* Reduce la altura máxima en pantallas pequeñas */
+        max-height: 300px; 
     }
     
     .bandera img {
-        width: 35px; /* Reduce el tamaño de las banderas en pantallas pequeñas */
+        width: 35px; 
     }
 }
+

@@ -29,7 +29,7 @@ if (isset($_REQUEST['aceptar'])) {
         <header>
             <h1 id="inicio">DETALLE</h1>
         </header>
-        <div>
+        <div class="detalle">
             <br/>
             <form>
                 <input type="submit" name="aceptar" value="Aceptar">

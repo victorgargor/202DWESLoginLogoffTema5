@@ -56,21 +56,9 @@ $mensaje = str_replace(
 
 echo "<p id = 'mensaje-bienvenida'>" . $mensaje . "</p>";
 
-if (isset($_REQUEST['editarperfil'])) {
-    // Redirige a la página de editarPerfil
-    header("Location: editarPerfil.php");
-    exit();
-}
-
 if (isset($_REQUEST['detalle'])) {
     // Redirige a la página de detalle
     header("Location: detalle.php");
-    exit();
-}
-
-if (isset($_REQUEST['mtodepartamentos'])) {
-    // Redirige a la página de detalle
-    header("Location: MtoDepartamentos.php");
     exit();
 }
 
@@ -103,12 +91,6 @@ if (isset($_REQUEST['cerrarsesion'])) {
             </div>
             <form>
                 <input type="submit" name="detalle" value="Detalle">
-            </form>
-            <form>
-                <input type="submit" name="mtodepartamentos" value="Mto. Departamentos">
-            </form>
-            <form>
-                <input type="submit" name="editarperfil" value="Editar Perfil">
             </form>
             <form>
                 <input type="submit" name="cerrarsesion" value="Cerrar Sesión">

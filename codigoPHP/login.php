@@ -47,14 +47,19 @@ if (isset($_REQUEST['iniciarsesion'])) {
     try {
         // Conectar a la base de datos utilizando PDO
         $miDB = new PDO(DSN, USER, PASSWORD);
-
-        // Variable que contiene el hash del usuario + password
-        $hashedPassword = hash("sha256", $_REQUEST['usuario'] . $_REQUEST['password']);
+        
+        // Variable que contiene el hash del usuario y la password concatenados
+        $hashedPassword = hash('sha256', $_REQUEST['usuario'] . $_REQUEST['password']);
+        
+        // Definimos la consulta SQL usando la sintaxis Heredoc
+        $sentencia = <<< SQL
+                SELECT * FROM T01_Usuario
+                WHERE T01_CodUsuario ='{$_REQUEST['usuario']}'
+                AND T01_Password = '$hashedPassword'
+        SQL;           
 
         // Preparar la consulta para verificar las credenciales del usuario
-        $sql = $miDB->prepare('SELECT * FROM T01_Usuario WHERE T01_CodUsuario = :usuario AND T01_Password = :password');
-        $sql->bindParam(':usuario', $_REQUEST['usuario']);
-        $sql->bindParam(':password', $hashedPassword);
+        $sql = $miDB->prepare($sentencia);
         $sql->execute();
 
         // Obtener el resultado de la consulta
@@ -119,7 +124,7 @@ if ($entradaOK) {
                 <h1>LOGIN</h1>
             </header>
             <main>
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" novalidate>
+                <form class="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" novalidate>
                     <div class="form-group">
                         <label for="usuario">Usuario:</label>
                         <input type="text" id="usuario" name="usuario" style="background-color: lightyellow" required>
