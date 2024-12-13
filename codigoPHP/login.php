@@ -26,7 +26,7 @@ if (!empty($_REQUEST['registrarse'])) {
 
 // Incluir archivos necesarios para la validación y la conexión a la base de datos
 require_once('../core/231018libreriaValidacion.php');
-require_once('../config/ConfDBPDOCasa.php');
+require_once('../config/ConfDBPDOED.php');
 
 // Variable que indica si las respuestas son correctas
 $entradaOK = true;
